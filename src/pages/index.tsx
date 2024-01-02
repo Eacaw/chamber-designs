@@ -4,6 +4,7 @@ import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 
 import styles from "./index.module.css";
+import SkillIcons from "../components/HomepageFeatures/elements/home/SkillIcons";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -15,7 +16,15 @@ function HomepageHeader() {
         styles.splashBackground
       )}
     >
-      <div className="container"></div>
+      <div>
+        <h1 className={(styles.fadeUp, styles.siteTitle)}>
+          Hi, I&#x27;m David Pinchen
+        </h1>
+        <div className={styles.fadeUp}>
+          <SkillIcons />
+        </div>
+        <p className={styles.fadeUp}> Scroll down for more about me...</p>
+      </div>
     </header>
   );
 }

@@ -3,7 +3,31 @@
  * and scoped locally.
  */
 
+.siteTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: white;
+}
+
+.fadeUp {
+  animation: fadeUp 1s ease-in-out;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .heroBanner {
+  display: grid;
+  grid-row: auto;
   padding: 4rem 0;
   text-align: center;
   position: relative;
@@ -23,6 +47,7 @@
 }
 
 .splashBackground {
+  top: -30px;
   height: 100vh;
   background-image: url("../../static/img/Office.png");
   background-position: center;
