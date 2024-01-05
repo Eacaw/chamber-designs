@@ -45,13 +45,8 @@ const config: Config = {
         src: "img/logo.svg",
       },
       items: [
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Projects",
-        },
         { to: "/blog", label: "Blog", position: "left" },
+        { to: "/projects", label: "Projects", position: "left" },
         {
           href: "https://github.com/Eacaw",
           label: "GitHub",
