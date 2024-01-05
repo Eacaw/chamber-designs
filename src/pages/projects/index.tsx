@@ -6,6 +6,7 @@ import styles from "./projects.module.css";
 
 export default function projects(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+  const tempData = ["test1", "test2", "test3", "test4", "test5"];
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
@@ -18,12 +19,12 @@ export default function projects(): JSX.Element {
             <div className={styles.card}>
               <h2>Typewriting Monkeys</h2>
               <p>An exercise in Genetic Algorithms</p>
-              <a href="/project1">View Project</a>
+              <a href="/projects/typewriting-monkeys">View Project</a>
             </div>
             <div className={styles.card}>
               <h2>Wave Function Collapse Sodoku</h2>
               <p>Breadth first search implementation</p>
-              <a href="/project2">View Project</a>
+              <a href="/projects/wfc-soduku">View Project</a>
             </div>
             {/* Add more project cards here */}
           </div>

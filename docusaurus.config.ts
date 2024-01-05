@@ -45,8 +45,8 @@ const config: Config = {
         src: "img/logo.svg",
       },
       items: [
-        { to: "/blog", label: "Blog", position: "left" },
         { to: "/projects", label: "Projects", position: "left" },
+        { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/Eacaw",
           label: "GitHub",
@@ -62,30 +62,8 @@ const config: Config = {
           items: [
             {
               label: "Projects",
-              to: "/docs/intro",
+              to: "/projects",
             },
-          ],
-        },
-        {
-          title: "Social",
-          items: [
-            {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "Linked In",
-              href: "https://www.linkedin.com/in/david-pinchen/",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
             {
               label: "Blog",
               to: "/blog",
