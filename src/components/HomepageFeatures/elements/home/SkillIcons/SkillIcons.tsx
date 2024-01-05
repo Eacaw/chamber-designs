@@ -7,7 +7,7 @@ type iconData = {
 };
 
 export default function SkillIcons(): JSX.Element {
-  const icons: [iconData] = svgData.icons;
+  const icons: iconData[] = svgData.icons;
   return (
     <div>
       {icons.map((icon) => (

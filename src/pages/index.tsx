@@ -1,10 +1,9 @@
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
 
 import styles from "./index.module.css";
-import SkillIcons from "../components/HomepageFeatures/elements/home/SkillIcons/SkillIcons";
+import * as homeElements from "../components/HomepageFeatures/elements/home/HomeElements";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -21,7 +20,7 @@ function HomepageHeader() {
           Hi, I&#x27;m David Pinchen
         </h1>
         <div className={styles.fadeUp}>
-          <SkillIcons />
+          <homeElements.SkillIcons />
         </div>
         <p className={styles.fadeUp}> Scroll down for more about me...</p>
       </div>
@@ -38,7 +37,7 @@ export default function Home(): JSX.Element {
     >
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+        <homeElements.Timeline />
       </main>
     </Layout>
   );

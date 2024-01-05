@@ -1,0 +1,47 @@
+/* FILEPATH: /Users/davidpinchen/Projects/ChamberDesigns/apps/chamber-designs/src/pages/projects.module.css */
+
+/* Clean cards with rounded lower left corner */
+.card {
+  border-radius: 0 2em 0 2em;
+  border: 3px solid #383838;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  margin: 2em;
+  background-color: #524f56;
+}
+
+.card:hover {
+  box-shadow: 0 20px 40px rgba(9, 9, 9, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Text readability */
+.card p {
+  color: #a1a1a1;
+  font-size: 1.5em;
+  line-height: 1.5;
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.card.dark-mode {
+  background-color: #222;
+  border-color: #444;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.card.dark-mode p {
+  color: #9d9d9d;
+}
+
+.content {
+  height: 100vh;
+  background-color: #424242;
+  padding: 2em;
+  width: 80%;
+  margin-left: 10%;
+}
