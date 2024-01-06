@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./timeline.module.css";
 
-export default function Timeline() {
+export default function Timeline(): JSX.Element {
   return (
     <>
       <div className={styles.timelineCard}>
