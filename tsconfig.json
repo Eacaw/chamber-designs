@@ -1,6 +1,10 @@
 {
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "lib": ["es6", "dom"]
+  },
+  "paths": {
+    "react": ["./node_modules/@types/react"]
   }
 }
