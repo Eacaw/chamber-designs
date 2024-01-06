@@ -9,7 +9,7 @@ export default function projects(): JSX.Element {
   const tempData = ["test1", "test2", "test3", "test4", "test5"];
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={`${siteConfig.title}`}
       description="Personal Project Portfolio of David Pinchen"
     >
       <div className={styles.content}>
