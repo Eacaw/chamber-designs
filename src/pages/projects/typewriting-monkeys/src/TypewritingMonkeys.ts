@@ -3,9 +3,10 @@ import { DNA } from "./DNA";
  * Typewriting Monkeys project by David Pinchen (Eacaw) - 2024
  */
 
-const target: string[] = "H4 is the best".split("");
-const populationSize: number = 50;
-const mutationRate: number = 0.1;
+const target: string[] = "Hannah has the sexiest bum!".split("");
+const populationSize: number = 50; // 50 - 1M
+const mutationRate: number = 0.2; // 0 - 1
+const elitismValue: number = 5; // 0 - 100
 
 function createInitialPopulation() {
   const population = [];
@@ -30,7 +31,10 @@ function evolvePopulation(population: DNA[]) {
 }
 
 function selectParent(population: DNA[]) {
-  const randomIndex = Math.floor((Math.random() * population.length) / 2);
+  const elitismDivisor = Math.floor(population.length / elitismValue);
+  const randomIndex = Math.floor(
+    (Math.random() * population.length) / elitismDivisor
+  );
   return population[randomIndex];
 }
 
@@ -57,9 +61,6 @@ export function runSimulation(
 ) {
   let generation = 1;
   let population = createInitialPopulation();
-  let bestMatch = findBestMatch(population);
-
-  console.log(`Searching for target: ${target.join("")}`);
 
   runSim(
     population,
@@ -81,11 +82,6 @@ function runSim(
   sortPopulationByFitness(population);
   let bestMatch = findBestMatch(population);
   generation++;
-  console.log(
-    `Generation: ${generation} : ${bestMatch.genes.join(
-      ""
-    )} : ${bestMatch.fitness.toFixed(2)}`
-  );
   setTopFiveDisplay([
     population[0].genes.join(""),
     population[1].genes.join(""),
@@ -95,7 +91,7 @@ function runSim(
   ]);
   setGeneration(generation);
 
-  if (bestMatch.fitness < 1) {
+  if (bestMatch.fitness < 1 && generation < 2000) {
     // Recursively call runSim until the best match is found
     setTimeout(() => {
       runSim(
@@ -107,9 +103,6 @@ function runSim(
       );
     }, 0);
   } else {
-    console.log(
-      `Target found: ${bestMatch.genes.join("")} in ${generation} generations`
-    );
     simulationFinished();
 
     return;
