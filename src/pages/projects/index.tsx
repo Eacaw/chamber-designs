@@ -1,7 +1,6 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import React from "react";
-import { DummyButShareable } from "@repo/ui";
+import * as React from "react";
 
 import styles from "./projects.module.css";
 
@@ -29,7 +28,6 @@ export default function projects(): JSX.Element {
             </div>
             {/* Add more project cards here */}
           </div>
-          <DummyButShareable appName="projects" />
         </main>
       </div>
     </Layout>
