@@ -1,0 +1,18 @@
+.timelineCard {
+  background: linear-gradient(225deg, #fafafa, #c6c6c6);
+  border-radius: 1rem;
+  border: 3px solid #e6e6e6;
+  box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.4);
+  color: #000;
+  max-width: 400px;
+  padding: 1rem;
+  position: static;
+  text-align: center;
+  transition: 0.2s;
+  width: 35vw;
+}
+
+.timelineCard:hover {
+  box-shadow: 0 0 1rem 1rem rgba(0, 0, 0, 0.8);
+  transform: translateY(-10px);
+}
