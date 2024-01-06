@@ -3,7 +3,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 
 import styles from "./index.module.css";
-import * as homeElements from "../components/HomepageFeatures/elements/home/HomeElements";
+import { SkillIcons } from "../components/HomepageFeatures/elements/home/HomeElements";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -20,7 +20,7 @@ function HomepageHeader() {
           Hi, I&#x27;m David Pinchen
         </h1>
         <div className={styles.fadeUp}>
-          <homeElements.SkillIcons />
+          <SkillIcons />
         </div>
         <p className={styles.fadeUp}> Scroll down for more about me...</p>
       </div>
@@ -31,12 +31,14 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
-    >
-      <HomepageHeader />
-      <main></main>
-    </Layout>
+    <>
+      <Layout
+        title={`${siteConfig.title}`}
+        description="Description will go into a meta tag in <head />"
+      >
+        <HomepageHeader />
+        <main></main>
+      </Layout>
+    </>
   );
 }
