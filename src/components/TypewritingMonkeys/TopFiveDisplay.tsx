@@ -1,3 +1,4 @@
+import { Card } from "antd";
 import React from "react";
 
 interface TopFiveDisplayProps {
@@ -6,31 +7,47 @@ interface TopFiveDisplayProps {
 
 const TopFiveDisplay: React.FC<TopFiveDisplayProps> = ({ data }) => {
   return (
-    <div
-      style={{
-        width: "80%",
-        borderRadius: "0.5em",
-        margin: "auto",
-      }}
-    >
+    <>
       {data.map((item, index) => (
         <div
-          key={index}
           style={{
-            height: "4em",
-            borderRadius: "0.5em",
-            backgroundColor: "#434343",
-            border: "3px solid #383838",
-            marginBottom: "0.5em",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "grid",
+            gridTemplateColumns: "1fr 0fr 10fr",
           }}
         >
-          {item}
+          <div
+            key={index + 99}
+            style={{
+              height: "4em",
+              borderRadius: "0.5em",
+              backgroundColor: "#f3f3f3",
+              border: "3px solid #383838",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {index}
+          </div>
+          <div></div>
+          <div
+            key={index - 99}
+            style={{
+              height: "4em",
+              borderRadius: "0.5em",
+              backgroundColor: "#f3f3f3",
+              border: "3px solid #383838",
+              marginBottom: "0.5em",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {item}
+          </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
