@@ -5,17 +5,23 @@ import NumberFormItem from "./UI/numberFormItem";
 import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 
 import styles from "./tw-components.module.css";
-import { DEFAULT_PHRASE } from "./constants";
+import { DEFAULT_GA_SETTINGS } from "./constants";
 
 export default function SettingsTab(props: any): JSX.Element {
   const { setGASettings, startSimulation, disableButton } = props;
 
   const [form] = Form.useForm();
 
-  const [target, setTarget] = useState(DEFAULT_PHRASE);
-  const [populationSize, setPopulationSize] = useState(1000);
-  const [elitismValue, setElitismValue] = useState(5);
-  const [mutationRate, setMutationRate] = useState(5);
+  const [target, setTarget] = useState(DEFAULT_GA_SETTINGS.targetPhrase);
+  const [populationSize, setPopulationSize] = useState(
+    DEFAULT_GA_SETTINGS.populationSize
+  );
+  const [elitismValue, setElitismValue] = useState(
+    DEFAULT_GA_SETTINGS.elitismValue
+  );
+  const [mutationRate, setMutationRate] = useState(
+    DEFAULT_GA_SETTINGS.mutationRate
+  );
 
   const onChangePopulation = (newValue: number) => {
     setPopulationSize(newValue);
@@ -37,17 +43,16 @@ export default function SettingsTab(props: any): JSX.Element {
 
   const targetPhraseProps = {
     parentOnChange: onChangeTargetPhrase,
-    placeholder: DEFAULT_PHRASE,
+    placeholder: DEFAULT_GA_SETTINGS.targetPhrase,
     name: "targetPhrase",
     label: "targetPhrase",
     tooltip: "targetPhrase",
   };
-
   const populationSizeProps = {
     parentOnChange: onChangePopulation,
     min: 50,
     max: 100000,
-    initialValue: 1000,
+    initialValue: DEFAULT_GA_SETTINGS.populationSize,
     name: "populationSize",
     label: "populationSize",
     tooltip: "populationSize",
@@ -56,7 +61,7 @@ export default function SettingsTab(props: any): JSX.Element {
     parentOnChange: onChangeElite,
     min: 1,
     max: 100,
-    initialValue: 5,
+    initialValue: DEFAULT_GA_SETTINGS.elitismValue,
     name: "elitismValue",
     label: "elitismValue",
     tooltip: "elitismValue",
@@ -65,7 +70,7 @@ export default function SettingsTab(props: any): JSX.Element {
     parentOnChange: onChangeMutate,
     min: 1,
     max: 100,
-    initialValue: 5,
+    initialValue: DEFAULT_GA_SETTINGS.mutationRate,
     name: "mutationRate",
     label: "mutationRate",
     tooltip: "mutationRate",
