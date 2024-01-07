@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import { runSimulation } from "./src/TypewritingMonkeys";
 
-import { Card, Col, Row } from "antd";
+import { Badge, Card, Col, Flex, Row } from "antd";
 import SettingsTab from "./components/SettingsTab";
 import TopFiveDisplay from "./components/TopFiveDisplay";
 import { DEFAULT_GA_SETTINGS } from "./components/constants";
@@ -50,13 +50,23 @@ export default function projects(): JSX.Element {
                   data={topFive}
                   target={gaSettings.targetPhrase}
                 />
-                <h3
-                  style={{
-                    marginTop: "1em",
-                  }}
-                >
-                  Generations: {generation}
-                </h3>
+                <Flex justify="space-between" align="center">
+                  <h3
+                    style={{
+                      marginTop: "1em",
+                    }}
+                  >
+                    Generations: {generation}
+                  </h3>
+                  <Flex gap="small" align="center">
+                    <Badge status={disableButton ? "processing" : "default"} />
+                    {disableButton ? (
+                      <span>Running</span>
+                    ) : (
+                      <span>Stopped</span>
+                    )}
+                  </Flex>
+                </Flex>
               </Card>
             </Col>
             <Col span={10}>
