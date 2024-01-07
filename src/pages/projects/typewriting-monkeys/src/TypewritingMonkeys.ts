@@ -1,12 +1,13 @@
 import { DNA } from "./DNA";
+import { GASettings } from "./types";
 /**
  * Typewriting Monkeys project by David Pinchen (Eacaw) - 2024
  */
 
-const target: string[] = "Hannah has the sexiest bum!".split("");
-const populationSize: number = 50; // 50 - 1M
-const mutationRate: number = 0.2; // 0 - 1
-const elitismValue: number = 5; // 0 - 100
+let target: string[] = "Hannah has the sexiest bum!".split("");
+let populationSize: number; // 50 - 1M
+let mutationRate: number; // 0 - 100
+let elitismValue: number; // 0 - 100
 
 function createInitialPopulation() {
   const population = [];
@@ -31,9 +32,8 @@ function evolvePopulation(population: DNA[]) {
 }
 
 function selectParent(population: DNA[]) {
-  const elitismDivisor = Math.floor(population.length / elitismValue);
   const randomIndex = Math.floor(
-    (Math.random() * population.length) / elitismDivisor
+    (Math.random() * population.length) / elitismValue
   );
   return population[randomIndex];
 }
@@ -57,8 +57,13 @@ function sortPopulationByFitness(population: DNA[]) {
 export function runSimulation(
   setTopFiveDisplay: Function,
   setGeneration: Function,
-  simulationFinished: Function
+  simulationFinished: Function,
+  settings: GASettings
 ) {
+  populationSize = settings.populationSize;
+  mutationRate = settings.mutationRate / 100;
+  elitismValue = Math.floor(populationSize / settings.elitismValue);
+
   let generation = 1;
   let population = createInitialPopulation();
 
