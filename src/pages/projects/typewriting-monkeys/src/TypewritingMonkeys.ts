@@ -4,7 +4,10 @@ import { GASettings } from "./types";
  * Typewriting Monkeys project by David Pinchen (Eacaw) - 2024
  */
 
-let target: string[] = "To add a bit of context, H4 is the best!".split("");
+let target: string[] =
+  "To add a bit of context, H4 is the best! Then again, I might need some more text. Oh go on then, lets make it two lines.".split(
+    ""
+  );
 let populationSize: number; // 50 - 1M
 let mutationRate: number; // 0 - 100
 let elitismValue: number; // 0 - 100
@@ -88,11 +91,11 @@ function runSim(
   let bestMatch = findBestMatch(population);
   generation++;
   setTopFiveDisplay([
-    population[0].genes.join(""),
-    population[1].genes.join(""),
-    population[2].genes.join(""),
-    population[3].genes.join(""),
-    population[4].genes.join(""),
+    population[0],
+    population[1],
+    population[2],
+    population[3],
+    population[4],
   ]);
   setGeneration(generation);
 

@@ -4,17 +4,18 @@ import React, { useState } from "react";
 
 import { runSimulation } from "./src/TypewritingMonkeys";
 
-import { Button, Card, Col, Row } from "antd";
-import TopFiveDisplay from "../../../components/TypewritingMonkeys/TopFiveDisplay";
+import { Card, Col, Row } from "antd";
 import SelectionTab from "./components/SelectionTab";
+import TopFiveDisplay from "./components/TopFiveDisplay";
 import { DEFAULT_GA_SETTINGS } from "./components/constants";
 import { GASettings } from "./src/types";
 import styles from "./tw-monkeys.module.css";
 
+import { DEFAULT_GENES } from "./src/constants";
+
 export default function projects(): JSX.Element {
-  const defaultGenes = ["---", "---", "---", "---", "---"];
   const { siteConfig } = useDocusaurusContext();
-  const [topFive, setTopFive] = React.useState(defaultGenes);
+  const [topFive, setTopFive] = React.useState(DEFAULT_GENES);
 
   const [generation, setGeneration] = React.useState(0);
   const [disableButton, setDisableButton] = React.useState(false);
@@ -38,14 +39,17 @@ export default function projects(): JSX.Element {
       <div className={styles.content}>
         <main>
           <Row gutter={16}>
-            <Col span={12}>
+            <Col span={14}>
               <Card
-                title="Top Five Gene Arrays"
+                title="Output - Top 5"
                 style={{
                   marginBottom: "1em",
                 }}
               >
-                <TopFiveDisplay data={topFive} />
+                <TopFiveDisplay
+                  data={topFive}
+                  target="To add a bit of context, H4 is the best! Then again, I might need some more text. Oh go on then, lets make it two lines."
+                />
                 <h3
                   style={{
                     marginTop: "1em",
@@ -55,7 +59,7 @@ export default function projects(): JSX.Element {
                 </h3>
               </Card>
             </Col>
-            <Col span={12}>
+            <Col span={10}>
               <Card
                 title="Options"
                 bordered={false}
@@ -63,22 +67,11 @@ export default function projects(): JSX.Element {
                   marginBottom: "1em",
                 }}
               >
-                <SelectionTab setGASettings={setGASettings} />
-              </Card>
-            </Col>
-          </Row>
-          <Row gutter={16}>
-            <Col span={24}>
-              <Card title="Controls" bordered={false}>
-                <div
-                  style={{
-                    height: "8em",
-                  }}
-                >
-                  <Button onClick={startSimulation} disabled={disableButton}>
-                    Click To run sim
-                  </Button>
-                </div>
+                <SelectionTab
+                  setGASettings={setGASettings}
+                  startSimulation={startSimulation}
+                  disableButton={disableButton}
+                />
               </Card>
             </Col>
           </Row>

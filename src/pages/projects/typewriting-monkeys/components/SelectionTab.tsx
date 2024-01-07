@@ -1,10 +1,12 @@
-import { Col, Form, InputNumber, Row, Slider } from "antd";
+import { Button, Col, Form, InputNumber, Row, Slider } from "antd";
 import { useState } from "react";
 import NumberFormItem from "./UI/numberFormItem";
 import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 
+import styles from "./tw-components.module.css";
+
 export default function SelectionTab(props: any): JSX.Element {
-  const { setGASettings } = props;
+  const { setGASettings, startSimulation, disableButton } = props;
 
   const [form] = Form.useForm();
 
@@ -71,16 +73,23 @@ export default function SelectionTab(props: any): JSX.Element {
   };
 
   return (
-    <Form
-      form={form}
-      labelCol={{ span: 12 }}
-      wrapperCol={{ span: 12 }}
-      layout="vertical"
-      size="small"
-    >
-      <NumberFormItem {...populationSizeProps} />
-      <SlidingNumberFormItem {...elitismProps} />
-      <SlidingNumberFormItem {...mutationProps} />
-    </Form>
+    <div className={styles.optionsCard}>
+      <div className={styles.buttonMenu}>
+        <Button onClick={startSimulation} disabled={disableButton}>
+          Click To run sim
+        </Button>
+      </div>
+      <Form
+        form={form}
+        labelCol={{ span: 12 }}
+        wrapperCol={{ span: 12 }}
+        layout="vertical"
+        size="small"
+      >
+        <NumberFormItem {...populationSizeProps} />
+        <SlidingNumberFormItem {...elitismProps} />
+        <SlidingNumberFormItem {...mutationProps} />
+      </Form>
+    </div>
   );
 }
