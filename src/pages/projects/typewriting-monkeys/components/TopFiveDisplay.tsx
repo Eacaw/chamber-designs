@@ -27,20 +27,34 @@ const TopFiveDisplay: React.FC<TopFiveDisplayProps> = ({ data, target }) => {
 
   return (
     <>
-      {data.map((i, index) => (
-        <Badge.Ribbon text={index + 1} color="gold">
-          <Card style={{ borderRadius: "0.5em", ...style[index] }}>
-            <div className={styles.topFiveTablet}>
-              <div className={styles.fitnessColumn}>
-                <span>Fitness:</span>
-                <h2>{Math.round(i.fitness * 100)}%</h2>
-              </div>
-              <div></div>
-              {i.genes}
+      <Badge.Ribbon text="Top genes" color="gold">
+        <Card style={{ borderRadius: "0.5em", ...style[0] }}>
+          <div className={styles.topFiveTablet}>
+            <div className={styles.fitnessColumn}>
+              <span>Fitness:</span>
+              <h2>{Math.round(data[0].fitness * 100)}%</h2>
             </div>
-          </Card>
-        </Badge.Ribbon>
-      ))}
+            <div></div>
+            {data[0].genes}
+          </div>
+        </Card>
+      </Badge.Ribbon>
+      <div className={styles.fitnessCard}>
+        {data.map((i, index) => {
+          if (index > 0) {
+            return (
+              <Badge.Ribbon text={index + 1} color="gold">
+                <Card style={{ borderRadius: "0.5em", ...style[index] }}>
+                  <div className={styles.fitnessColumn}>
+                    <span>Fitness:</span>
+                    <h2>{Math.round(i.fitness * 100)}%</h2>
+                  </div>
+                </Card>
+              </Badge.Ribbon>
+            );
+          }
+        })}
+      </div>
     </>
   );
 };

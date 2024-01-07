@@ -18,6 +18,13 @@
   grid-template-columns: 1fr 1fr 10fr;
 }
 
+.fitnessCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .fitnessColumn {
   display: flex;
   flex-direction: column;
