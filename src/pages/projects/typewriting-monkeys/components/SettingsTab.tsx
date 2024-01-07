@@ -101,8 +101,8 @@ export default function SettingsTab(props: any): JSX.Element {
         </div>
         <Form
           form={form}
-          labelCol={{ span: 12 }}
-          wrapperCol={{ span: 12 }}
+          labelCol={{ span: 24 }}
+          wrapperCol={{ span: 24 }}
           layout="vertical"
           size="small"
         >
