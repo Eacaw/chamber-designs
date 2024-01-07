@@ -1,5 +1,5 @@
 import { Card } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./tw-components.module.css";
 import { DNA } from "../src/DNA";
 
@@ -9,18 +9,24 @@ interface TopFiveDisplayProps {
 }
 
 const TopFiveDisplay: React.FC<TopFiveDisplayProps> = ({ data, target }) => {
-  const targetPhrase = target;
   const [style, setStyle] = useState([]);
+
+  const updateStyle = useCallback((newStyle) => {
+    setStyle(newStyle);
+  }, []);
 
   useEffect(() => {
     const updatedStyle = data.map((item) => {
-      let col = item.genes.join("") === targetPhrase ? "#09bc00" : "red";
+      let col = item.genes.join("") === target ? "#09bc00" : "red";
+      console.log('item.genes.join("") :', item.genes.join(""));
+      console.log("target :", target);
+      console.log("col :", col);
       return {
         color: col,
       };
     });
-    setStyle(updatedStyle);
-  }, [data]);
+    updateStyle(updatedStyle);
+  }, [data, updateStyle]);
 
   return (
     <>

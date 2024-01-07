@@ -4,10 +4,7 @@ import { GASettings } from "./types";
  * Typewriting Monkeys project by David Pinchen (Eacaw) - 2024
  */
 
-let target: string[] =
-  "To add a bit of context, H4 is the best! Then again, I might need some more text. Oh go on then, lets make it two lines.".split(
-    ""
-  );
+let target: string[];
 let populationSize: number; // 50 - 1M
 let mutationRate: number; // 0 - 100
 let elitismValue: number; // 0 - 100
@@ -63,6 +60,7 @@ export function runSimulation(
   simulationFinished: Function,
   settings: GASettings
 ) {
+  target = settings.targetPhrase.split("");
   populationSize = settings.populationSize;
   mutationRate = settings.mutationRate / 100;
   elitismValue = Math.floor(populationSize / settings.elitismValue);

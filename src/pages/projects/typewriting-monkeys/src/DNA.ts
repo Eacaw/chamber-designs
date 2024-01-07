@@ -24,19 +24,14 @@ export class DNA {
   // Generate the genes for the DNA
 
   generateGenes() {
-    for (let i = 0; i < this.target.length; i++) {
-      this.genes[i] =
-        DNA.validCharacters[
-          Math.floor(Math.random() * DNA.validCharacters.length)
-        ];
-    }
+    this.genes = "---".split("");
   }
 
   // Calculate the fitness of the DNA
 
   calculateFitness() {
     let score = 0;
-    for (let i = 0; i < this.genes.length; i++) {
+    for (let i = 0; i < this.target.length; i++) {
       if (this.genes[i] === this.target[i]) {
         score++;
       }
@@ -48,7 +43,7 @@ export class DNA {
 
   crossover(other: DNA) {
     let child = new DNA(this.target, this.mutationRate);
-    for (let i = 0; i < this.genes.length; i++) {
+    for (let i = 0; i < this.target.length; i++) {
       if (Math.random() < 0.5) {
         child.genes[i] = this.genes[i];
       } else {
@@ -61,7 +56,7 @@ export class DNA {
   // Mutate the DNA
 
   mutate() {
-    for (let i = 0; i < this.genes.length; i++) {
+    for (let i = 0; i < this.target.length; i++) {
       if (Math.random() < this.mutationRate) {
         this.genes[i] =
           DNA.validCharacters[
