@@ -48,7 +48,7 @@ export default function projects(): JSX.Element {
               >
                 <TopFiveDisplay
                   data={topFive}
-                  target="To add a bit of context, H4 is the best! Then again, I might need some more text. Oh go on then, lets make it two lines."
+                  target={gaSettings.targetPhrase}
                 />
                 <h3
                   style={{
