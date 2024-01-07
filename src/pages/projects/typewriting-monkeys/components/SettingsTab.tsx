@@ -7,7 +7,7 @@ import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 import styles from "./tw-components.module.css";
 import { DEFAULT_PHRASE } from "./constants";
 
-export default function SelectionTab(props: any): JSX.Element {
+export default function SettingsTab(props: any): JSX.Element {
   const { setGASettings, startSimulation, disableButton } = props;
 
   const [form] = Form.useForm();

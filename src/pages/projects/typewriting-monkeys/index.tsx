@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { runSimulation } from "./src/TypewritingMonkeys";
 
 import { Card, Col, Row } from "antd";
-import SelectionTab from "./components/SelectionTab";
+import SettingsTab from "./components/SettingsTab";
 import TopFiveDisplay from "./components/TopFiveDisplay";
 import { DEFAULT_GA_SETTINGS } from "./components/constants";
 import { GASettings } from "./src/types";
@@ -67,7 +67,7 @@ export default function projects(): JSX.Element {
                   marginBottom: "1em",
                 }}
               >
-                <SelectionTab
+                <SettingsTab
                   setGASettings={setGASettings}
                   startSimulation={startSimulation}
                   disableButton={disableButton}
