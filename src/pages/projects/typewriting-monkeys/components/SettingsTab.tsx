@@ -83,12 +83,6 @@ export default function SettingsTab(props: any): JSX.Element {
       elitismValue: elitism,
       mutationRate: mutation,
     });
-    console.log("GA Settings: ", {
-      targetPhrase: targetPhrase,
-      populationSize: population,
-      elitismValue: elitism,
-      mutationRate: mutation,
-    });
   };
 
   return (

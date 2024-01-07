@@ -18,9 +18,6 @@ const TopFiveDisplay: React.FC<TopFiveDisplayProps> = ({ data, target }) => {
   useEffect(() => {
     const updatedStyle = data.map((item) => {
       let col = item.genes.join("") === target ? "#09bc00" : "red";
-      console.log('item.genes.join("") :', item.genes.join(""));
-      console.log("target :", target);
-      console.log("col :", col);
       return {
         color: col,
       };
