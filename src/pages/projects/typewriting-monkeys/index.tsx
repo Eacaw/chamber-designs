@@ -4,13 +4,14 @@ import React, { useState } from "react";
 
 import { runSimulation } from "./src/TypewritingMonkeys";
 
-import { Badge, Card, Col, Flex, Row } from "antd";
+import { Card, Col, Flex, Row } from "antd";
 import SettingsTab from "./components/SettingsTab";
-import TopFiveDisplay from "./components/TopFiveDisplay";
 import { DEFAULT_GA_SETTINGS } from "./components/constants";
 import { GASettings } from "./src/types";
 import styles from "./tw-monkeys.module.css";
 
+import BlurbCard from "./components/BlurbCard";
+import OutputCard from "./components/OutputCard";
 import { DEFAULT_GENES } from "./src/constants";
 
 export default function projects(): JSX.Element {
@@ -39,35 +40,18 @@ export default function projects(): JSX.Element {
       <div className={styles.content}>
         <main>
           <Row gutter={16}>
+            <Col span={24}>
+              <BlurbCard />
+            </Col>
+          </Row>
+          <Row gutter={16}>
             <Col span={14}>
-              <Card
-                title="Output - Top 5"
-                style={{
-                  marginBottom: "1em",
-                }}
-              >
-                <TopFiveDisplay
-                  data={topFive}
-                  target={gaSettings.targetPhrase}
-                />
-                <Flex justify="space-between" align="center">
-                  <h3
-                    style={{
-                      marginTop: "1em",
-                    }}
-                  >
-                    Generations: {generation}
-                  </h3>
-                  <Flex gap="small" align="center">
-                    <Badge status={disableButton ? "processing" : "default"} />
-                    {disableButton ? (
-                      <span>Running</span>
-                    ) : (
-                      <span>Stopped</span>
-                    )}
-                  </Flex>
-                </Flex>
-              </Card>
+              <OutputCard
+                topFive={topFive}
+                generation={generation}
+                disableButton={disableButton}
+                gaSettings={gaSettings}
+              />
             </Col>
             <Col span={10}>
               <Card
