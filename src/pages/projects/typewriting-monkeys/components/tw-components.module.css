@@ -5,17 +5,18 @@
   margin-bottom: 1rem;
 }
 
+@media (max-width: 1000px) {
+  .optionsCard {
+    grid-template-columns: 1fr;
+  }
+}
+
 .buttonMenu {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-}
-
-.topFiveTablet {
-  display: grid;
-  grid-template-columns: 1fr 1fr 10fr;
 }
 
 .fitnessCard {
