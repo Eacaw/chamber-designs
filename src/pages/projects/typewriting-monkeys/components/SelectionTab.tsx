@@ -1,71 +1,86 @@
-import React, { useState } from "react";
-import {
-  Button,
-  Col,
-  Form,
-  Input,
-  InputNumber,
-  Row,
-  Slider,
-  Space,
-} from "antd";
-import styles from "./tw-components.module.css";
+import { Col, Form, InputNumber, Row, Slider } from "antd";
+import { useState } from "react";
+import NumberFormItem from "./UI/numberFormItem";
+import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 
-export default function SelectionTab(): JSX.Element {
+export default function SelectionTab(props: any): JSX.Element {
+  const { setGASettings } = props;
+
   const [form] = Form.useForm();
 
-  const [inputValue, setInputValue] = useState(5);
+  const [populationSize, setPopulationSize] = useState(1000);
+  const [elitismValue, setElitismValue] = useState(5);
+  const [mutationRate, setMutationRate] = useState(5);
 
-  const onChange = (newValue: number) => {
-    setInputValue(newValue);
+  const onChangePopulation = (newValue: number) => {
+    setPopulationSize(newValue);
+    setGASettingsOnParent({ population: newValue });
+  };
+  const onChangeElite = (newValue: number) => {
+    setElitismValue(newValue);
+    setGASettingsOnParent({ elitism: newValue });
+  };
+  const onChangeMutate = (newValue: number) => {
+    setMutationRate(newValue);
+    setGASettingsOnParent({ mutation: newValue });
   };
 
-  const onFinish = (values: any) => {
-    console.log(values);
+  const populationSizeProps = {
+    parentOnChange: onChangePopulation,
+    min: 50,
+    max: 100000,
+    initialValue: 1000,
+    name: "populationSize",
+    label: "populationSize",
+    tooltip: "populationSize",
+  };
+  const elitismProps = {
+    parentOnChange: onChangeElite,
+    min: 1,
+    max: 100,
+    initialValue: 5,
+    name: "elitismValue",
+    label: "elitismValue",
+    tooltip: "elitismValue",
+  };
+  const mutationProps = {
+    parentOnChange: onChangeMutate,
+    min: 1,
+    max: 100,
+    initialValue: 5,
+    name: "mutationRate",
+    label: "mutationRate",
+    tooltip: "mutationRate",
   };
 
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
+  const setGASettingsOnParent = ({
+    population = populationSize,
+    elitism = elitismValue,
+    mutation = mutationRate,
+  }) => {
+    setGASettings({
+      populationSize: population,
+      elitismValue: elitism,
+      mutationRate: mutation,
+    });
+    console.log("GA Settings: ", {
+      populationSize: population,
+      elitismValue: elitism,
+      mutationRate: mutation,
+    });
   };
 
   return (
     <Form
       form={form}
-      labelCol={{ span: 24 }}
-      wrapperCol={{ span: 24 }}
+      labelCol={{ span: 12 }}
+      wrapperCol={{ span: 12 }}
       layout="vertical"
       size="small"
-      onFinish={onFinish}
     >
-      <Form.Item label="Population Size">
-        <InputNumber min={10} max={10000000} defaultValue={1000} />
-      </Form.Item>
-      <Form.Item label="Elitism %">
-        <Row>
-          <Col span={12}>
-            <Slider
-              min={1}
-              max={100}
-              onChange={onChange}
-              value={typeof inputValue === "number" ? inputValue : 0}
-            />
-          </Col>
-          <Col span={4}>
-            <InputNumber
-              min={1}
-              max={20}
-              style={{ margin: "0 16px" }}
-              value={inputValue}
-              onChange={onChange}
-            />
-          </Col>
-        </Row>
-      </Form.Item>
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+      <NumberFormItem {...populationSizeProps} />
+      <SlidingNumberFormItem {...elitismProps} />
+      <SlidingNumberFormItem {...mutationProps} />
     </Form>
   );
 }
