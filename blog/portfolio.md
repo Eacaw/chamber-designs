@@ -32,13 +32,3 @@ I have big plans for my portfolio! It's not just a static collection of projects
 ## Contact me
 
 I'm always open to questions, suggestions, and opportunities. Feel free to reach out to me via email at davidpinchen@gmail.com or find me on [GitHub](https://github.com/Eacaw). Let's connect and collaborate on something!
-
-## Projects
-
-## Blog
-
-## About me
-
-## Porfolio plans
-
-## Contact me
