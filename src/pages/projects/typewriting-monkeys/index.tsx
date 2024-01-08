@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { runSimulation } from "./src/TypewritingMonkeys";
 
 import { Card, Col, Row } from "antd";
-import SettingsTab from "./components/SettingsTab";
+import ControlPanel from "./components/ControlPanel";
 import { DEFAULT_GA_SETTINGS } from "./components/constants";
 import { GASettings } from "./src/types";
 import styles from "./tw-monkeys.module.css";
@@ -61,7 +61,7 @@ export default function projects(): JSX.Element {
                   marginBottom: "1em",
                 }}
               >
-                <SettingsTab
+                <ControlPanel
                   setGASettings={setGASettings}
                   startSimulation={startSimulation}
                   disableButton={disableButton}

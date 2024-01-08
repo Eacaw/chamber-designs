@@ -1,6 +1,6 @@
 import { Badge, Card } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
-import styles from "..tw-monkeys.module.css";
+import styles from "../tw-monkeys.module.css";
 import { DNA } from "../src/DNA";
 
 interface TopFiveDisplayProps {
@@ -28,14 +28,16 @@ const TopFiveDisplay: React.FC<TopFiveDisplayProps> = ({ data, target }) => {
   return (
     <>
       <Badge.Ribbon text="#1 Top genes" color="green">
-        <Card style={{ borderRadius: "0.5em", ...style[0] }}>
+        <Card
+          style={{ borderRadius: "0.5em", ...style[0], marginBottom: "0.5rem" }}
+        >
           <div className={styles.topFiveTablet}>
             <div className={styles.fitnessColumn}>
               <span>Fitness:</span>
               <h2>{Math.round(data[0].fitness * 100)}%</h2>
             </div>
             <div></div>
-            {data[0].genes}
+            <center>{data[0].genes}</center>
           </div>
         </Card>
       </Badge.Ribbon>

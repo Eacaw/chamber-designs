@@ -1,13 +1,19 @@
-import { Button, Form } from "antd";
+import { Button, Form, Tooltip } from "antd";
 import { useState } from "react";
 import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
-import TestFormItem from "./UI/TextFormItem";
+import TextFormItem from "./UI/TextFormItem";
 import NumberFormItem from "./UI/numberFormItem";
 
 import { DEFAULT_GA_SETTINGS } from "./constants";
 import styles from "../tw-monkeys.module.css";
+import {
+  PauseCircleOutlined,
+  PlayCircleOutlined,
+  StopOutlined,
+} from "@ant-design/icons";
+import ControlPanelButtons from "./ControlPanelButtons";
 
-export default function SettingsTab(props: any): JSX.Element {
+export default function ControlPanel(props: any): JSX.Element {
   const { setGASettings, startSimulation, disableButton } = props;
 
   const [form] = Form.useForm();
@@ -92,13 +98,12 @@ export default function SettingsTab(props: any): JSX.Element {
 
   return (
     <>
-      <TestFormItem {...targetPhraseProps} />
-      <div className={styles.optionsCard}>
-        <div className={styles.buttonMenu}>
-          <Button onClick={startSimulation} disabled={disableButton}>
-            Click To run sim
-          </Button>
-        </div>
+      <div className={styles.contentCard}>
+        <ControlPanelButtons
+          startSimulation={startSimulation}
+          disableButton={disableButton}
+        />
+        <TextFormItem {...targetPhraseProps} />
         <Form
           form={form}
           labelCol={{ span: 24 }}

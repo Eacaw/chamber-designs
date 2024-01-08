@@ -1,6 +1,7 @@
 import { Badge, Card, Flex } from "antd";
 import React from "react";
 import TopFiveDisplay from "./TopFiveDisplay";
+import styles from "../tw-monkeys.module.css";
 
 interface OutputCardProps {
   topFive: any;
@@ -18,20 +19,22 @@ export default function OutputCard(props: OutputCardProps): JSX.Element {
         marginBottom: "1em",
       }}
     >
-      <TopFiveDisplay data={topFive} target={gaSettings.targetPhrase} />
-      <Flex justify="space-between" align="center">
-        <h3
-          style={{
-            marginTop: "1em",
-          }}
-        >
-          Generations: {generation}
-        </h3>
-        <Flex gap="small" align="center">
-          <Badge status={disableButton ? "processing" : "default"} />
-          {disableButton ? <span>Running</span> : <span>Stopped</span>}
+      <div className={styles.contentCard}>
+        <TopFiveDisplay data={topFive} target={gaSettings.targetPhrase} />
+        <Flex justify="space-between" align="center">
+          <h3
+            style={{
+              marginTop: "1em",
+            }}
+          >
+            Generations: {generation}
+          </h3>
+          <Flex gap="small" align="center">
+            <Badge status={disableButton ? "processing" : "default"} />
+            {disableButton ? <span>Running</span> : <span>Stopped</span>}
+          </Flex>
         </Flex>
-      </Flex>
+      </div>
     </Card>
   );
 }

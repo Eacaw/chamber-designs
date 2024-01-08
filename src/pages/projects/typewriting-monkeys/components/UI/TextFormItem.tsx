@@ -19,7 +19,7 @@ interface props {
  *
  * @returns An Ant Design Form.Item both a slider and number input that are synced
  */
-function SlidingNumberFormItem(props: props): JSX.Element {
+export default function TextFormItem(props: props): JSX.Element {
   const {
     parentOnChange = null,
     placeholder = 42,
@@ -45,5 +45,3 @@ function SlidingNumberFormItem(props: props): JSX.Element {
     </Form.Item>
   );
 }
-
-export default SlidingNumberFormItem;
