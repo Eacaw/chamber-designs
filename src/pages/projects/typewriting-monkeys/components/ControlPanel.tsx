@@ -1,17 +1,12 @@
-import { Button, Form, Tooltip } from "antd";
+import { Form } from "antd";
 import { useState } from "react";
 import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 import TextFormItem from "./UI/TextFormItem";
 import NumberFormItem from "./UI/numberFormItem";
 
-import { DEFAULT_GA_SETTINGS } from "./constants";
 import styles from "../tw-monkeys.module.css";
-import {
-  PauseCircleOutlined,
-  PlayCircleOutlined,
-  StopOutlined,
-} from "@ant-design/icons";
 import ControlPanelButtons from "./ControlPanelButtons";
+import { DEFAULT_GA_SETTINGS } from "../src/constants";
 
 export default function ControlPanel(props: any): JSX.Element {
   const { setGASettings, startSimulation, disableButton } = props;
