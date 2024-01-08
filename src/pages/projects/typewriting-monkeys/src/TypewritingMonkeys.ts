@@ -97,7 +97,7 @@ function runSim(
   ]);
   setGeneration(generation);
 
-  if (bestMatch.fitness < 1 && generation < 2000) {
+  if (bestMatch.fitness < 1 && generation < 500) {
     // Recursively call runSim until the best match is found
     setTimeout(() => {
       runSim(
