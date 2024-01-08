@@ -1,6 +1,6 @@
 import { Badge, Card } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
-import styles from "./tw-components.module.css";
+import styles from "..tw-monkeys.module.css";
 import { DNA } from "../src/DNA";
 
 interface TopFiveDisplayProps {

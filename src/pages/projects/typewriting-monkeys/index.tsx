@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import { runSimulation } from "./src/TypewritingMonkeys";
 
-import { Card, Col, Flex, Row } from "antd";
+import { Card, Col, Row } from "antd";
 import SettingsTab from "./components/SettingsTab";
 import { DEFAULT_GA_SETTINGS } from "./components/constants";
 import { GASettings } from "./src/types";

@@ -1,11 +1,11 @@
-import { Badge, Button, Col, Flex, Form, InputNumber, Row, Slider } from "antd";
+import { Button, Form } from "antd";
 import { useState } from "react";
+import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 import TestFormItem from "./UI/TextFormItem";
 import NumberFormItem from "./UI/numberFormItem";
-import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 
-import styles from "./tw-components.module.css";
 import { DEFAULT_GA_SETTINGS } from "./constants";
+import styles from "../tw-monkeys.module.css";
 
 export default function SettingsTab(props: any): JSX.Element {
   const { setGASettings, startSimulation, disableButton } = props;
