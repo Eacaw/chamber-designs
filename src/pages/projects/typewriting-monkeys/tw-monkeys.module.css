@@ -19,6 +19,11 @@
   margin-bottom: 1rem;
 }
 
+.chartCard {
+  position: relative;
+  max-height: 350px;
+}
+
 .contentCard {
   height: 350px;
 }
