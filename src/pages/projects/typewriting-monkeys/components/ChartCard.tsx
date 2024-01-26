@@ -11,6 +11,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { Card, Col, Flex, Row, Table } from "antd";
+import styles from "../tw-monkeys.module.css";
 
 ChartJS.register(
   CategoryScale,
@@ -24,6 +25,7 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     title: {
       display: true,
@@ -89,14 +91,33 @@ export default function ChartCard(props: ChartCardProps): JSX.Element {
           marginBottom: "1em",
         }}
       >
-        <Row gutter={16}>
-          <Col span={20}>
-            <Line options={options} data={dataSet} />
-          </Col>
-          <Col span={4}>
-            <Table dataSource={tableData} columns={columns} />;
-          </Col>
-        </Row>
+        <div className={styles.chartCard}>
+          <Row gutter={16}>
+            <Col span={20} className={styles.contentCard}>
+              <Line
+                options={options}
+                data={dataSet}
+                height="200px"
+                width="200px"
+              />
+            </Col>
+            <Col span={4}>
+              <Table
+                dataSource={tableData}
+                columns={columns}
+                pagination={{ position: ["none"] }}
+              >
+                <Table.Summary fixed="top">
+                  <Table.Summary.Row>
+                    <Table.Summary.Cell index={1}>
+                      Total Runs
+                    </Table.Summary.Cell>
+                  </Table.Summary.Row>
+                </Table.Summary>
+              </Table>
+            </Col>
+          </Row>
+        </div>
       </Card>
     );
   }
