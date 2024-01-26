@@ -9,6 +9,7 @@ export const DEFAULT_GA_SETTINGS: GASettings = {
   populationSize: 2500,
   mutationRate: 2,
   elitismValue: 25,
+  crossoverMethod: "random",
 };
 
 export const DEFAULT_GENES: DNA[] = [

@@ -1,11 +1,14 @@
 import { useState } from "react";
+
 import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 import TextFormItem from "./UI/TextFormItem";
-import NumberFormItem from "./UI/numberFormItem";
+import NumberFormItem from "./UI/NumberFormItem";
+import Combobox from "./UI/ComboBox";
 
 import styles from "../tw-monkeys.module.css";
 import ControlPanelButtons from "./ControlPanelButtons";
 import { DEFAULT_GA_SETTINGS } from "../src/constants";
+import { Col, Row } from "antd";
 
 interface ControlPanelProps {
   setGASettings: (settings: Object) => void;
@@ -27,7 +30,14 @@ export default function ControlPanel(props: ControlPanelProps): JSX.Element {
   const [mutationRate, setMutationRate] = useState(
     DEFAULT_GA_SETTINGS.mutationRate
   );
+  const [crossover, setCrossoverMethod] = useState(
+    DEFAULT_GA_SETTINGS.crossoverMethod
+  );
 
+  const onChangeCrossoverMethod = (newValue: string) => {
+    setCrossoverMethod(newValue);
+    setGASettingsOnParent({ crossoverMethod: newValue });
+  };
   const onChangePopulation = (newValue: number) => {
     setPopulationSize(newValue);
     setGASettingsOnParent({ population: newValue });
@@ -40,10 +50,23 @@ export default function ControlPanel(props: ControlPanelProps): JSX.Element {
     setMutationRate(newValue);
     setGASettingsOnParent({ mutation: newValue });
   };
-
   const onChangeTargetPhrase = (newValue: string) => {
     setTarget(newValue);
     setGASettingsOnParent({ targetPhrase: newValue });
+  };
+
+  const crossoverMethodProps = {
+    parentOnChange: onChangeCrossoverMethod,
+    initialValue: "Random",
+    values: [
+      { value: "random", label: "Random" },
+      { value: "singlePoint", label: "Single Point" },
+      { value: "doublePoint", label: "Double Point" },
+      { value: "uniform", label: "Uniform" },
+    ],
+    name: "crossoverMethod",
+    label: "crossoverMethod",
+    tooltip: "crossoverMethod",
   };
 
   const targetPhraseProps = {
@@ -86,12 +109,14 @@ export default function ControlPanel(props: ControlPanelProps): JSX.Element {
     population = populationSize,
     elitism = elitismValue,
     mutation = mutationRate,
+    crossoverMethod = crossover,
   }) => {
     setGASettings({
       targetPhrase: targetPhrase,
       populationSize: population,
       elitismValue: elitism,
       mutationRate: mutation,
+      crossoverMethod: crossoverMethod,
     });
   };
 
@@ -103,6 +128,11 @@ export default function ControlPanel(props: ControlPanelProps): JSX.Element {
           clearData={clearData}
           disableButton={disableButton}
         />
+        <Row justify="center">
+          <Col span={8}>
+            <Combobox {...crossoverMethodProps} />
+          </Col>
+        </Row>
         <TextFormItem {...targetPhraseProps} />
         <NumberFormItem {...populationSizeProps} />
         <SlidingNumberFormItem {...elitismProps} />

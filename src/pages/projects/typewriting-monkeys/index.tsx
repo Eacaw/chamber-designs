@@ -6,7 +6,7 @@ import { runSimulation } from "./src/TypewritingMonkeys";
 
 import { Card, Col, Row } from "antd";
 import ControlPanel from "./components/ControlPanel";
-import { GASettings } from "./src/types";
+import { GASettings, previousGeneration } from "./src/types";
 import styles from "./tw-monkeys.module.css";
 
 import BlurbCard from "./components/BlurbCard";
@@ -22,34 +22,30 @@ export default function projects(): JSX.Element {
   // Output
   const [topFive, setTopFive] = useState<DNA[]>(DEFAULT_GENES);
   const [generation, setGeneration] = useState<number>(0);
-  const [previousGenerations, setPreviousGenerations] = useState<number[]>([]);
+  const [previousGenerations, setPreviousGenerations] = useState<
+    previousGeneration[]
+  >([]);
   const [bestFitness, setBestFitness] = useState<number[]>([]);
   // UI
-  const [disableButton, setDisableButton] = useState<Boolean>(false);
+  const [disableButton, setDisableButton] = useState<boolean>(false);
 
   // Grab the top fitness for each generation
   useEffect(() => {
     setBestFitness([...bestFitness, topFive[0].fitness]);
   }, [topFive]);
 
-  useEffect(() => {
-    if (!disableButton) {
-      setPreviousGenerations([
-        ...previousGenerations,
-        { key: previousGenerations.length, generations: generation },
-      ]);
-    }
-    console.log("Previous Generations: ", previousGenerations);
-  }, [disableButton]);
-
   const startSimulation = () => {
     runSimulation(setTopFive, setGeneration, simulationFinished, gaSettings);
-    // setBestFitness([]);
+    setBestFitness([]);
     setDisableButton(true);
   };
 
-  const simulationFinished = () => {
+  const simulationFinished = (generations: number) => {
     setDisableButton(false);
+    setPreviousGenerations([
+      ...previousGenerations,
+      { key: previousGenerations.length, generations },
+    ]);
   };
 
   const clearData = () => {
