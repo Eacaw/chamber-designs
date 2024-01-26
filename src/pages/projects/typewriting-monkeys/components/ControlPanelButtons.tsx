@@ -1,21 +1,21 @@
-import React from "react";
-import styles from "../tw-monkeys.module.css";
-import { Button, Tooltip } from "antd";
 import {
+  ClearOutlined,
   PauseCircleOutlined,
   PlayCircleOutlined,
-  StopOutlined,
 } from "@ant-design/icons";
+import { Button, Tooltip } from "antd";
+import styles from "../tw-monkeys.module.css";
 
 interface ControlPanelButtonsProps {
   startSimulation: () => void;
+  clearData: () => void;
   disableButton: boolean;
 }
 
 export default function ControlPanelButtons(
   props: ControlPanelButtonsProps
 ): JSX.Element {
-  const { startSimulation, disableButton } = props;
+  const { startSimulation, clearData, disableButton } = props;
 
   return (
     <div className={styles.buttonMenu}>
@@ -32,11 +32,12 @@ export default function ControlPanelButtons(
           icon={<PauseCircleOutlined />}
         ></Button>
       </Tooltip>
-      <Tooltip title="Stop simulation">
+      <Tooltip title="Clear">
         <Button
-          disabled={!disableButton}
+          onClick={clearData}
+          disabled={disableButton}
           danger
-          icon={<StopOutlined />}
+          icon={<ClearOutlined />}
         ></Button>
       </Tooltip>
     </div>

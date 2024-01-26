@@ -56,6 +56,7 @@ export default function projects(): JSX.Element {
     setBestFitness([]);
     setPreviousGenerations([]);
   };
+
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
@@ -89,6 +90,7 @@ export default function projects(): JSX.Element {
                   setGASettings={setGASettings}
                   startSimulation={startSimulation}
                   disableButton={disableButton}
+                  clearData={clearData}
                 />
               </Card>
             </Col>

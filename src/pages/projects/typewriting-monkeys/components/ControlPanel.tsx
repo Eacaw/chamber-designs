@@ -1,4 +1,3 @@
-import { Form } from "antd";
 import { useState } from "react";
 import SlidingNumberFormItem from "./UI/SlidingNumberFormItem";
 import TextFormItem from "./UI/TextFormItem";
@@ -8,10 +7,15 @@ import styles from "../tw-monkeys.module.css";
 import ControlPanelButtons from "./ControlPanelButtons";
 import { DEFAULT_GA_SETTINGS } from "../src/constants";
 
-export default function ControlPanel(props: any): JSX.Element {
-  const { setGASettings, startSimulation, disableButton } = props;
+interface ControlPanelProps {
+  setGASettings: (settings: Object) => void;
+  startSimulation: () => void;
+  disableButton: boolean;
+  clearData: () => void;
+}
 
-  const [form] = Form.useForm();
+export default function ControlPanel(props: ControlPanelProps): JSX.Element {
+  const { setGASettings, startSimulation, disableButton, clearData } = props;
 
   const [target, setTarget] = useState(DEFAULT_GA_SETTINGS.targetPhrase);
   const [populationSize, setPopulationSize] = useState(
@@ -96,20 +100,13 @@ export default function ControlPanel(props: any): JSX.Element {
       <div className={styles.contentCard}>
         <ControlPanelButtons
           startSimulation={startSimulation}
+          clearData={clearData}
           disableButton={disableButton}
         />
         <TextFormItem {...targetPhraseProps} />
-        <Form
-          form={form}
-          labelCol={{ span: 24 }}
-          wrapperCol={{ span: 24 }}
-          layout="vertical"
-          size="small"
-        >
-          <NumberFormItem {...populationSizeProps} />
-          <SlidingNumberFormItem {...elitismProps} />
-          <SlidingNumberFormItem {...mutationProps} />
-        </Form>
+        <NumberFormItem {...populationSizeProps} />
+        <SlidingNumberFormItem {...elitismProps} />
+        <SlidingNumberFormItem {...mutationProps} />
       </div>
     </>
   );
