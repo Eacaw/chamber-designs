@@ -43,15 +43,15 @@ interface ChartCardProps {
 export default function ChartCard(props: ChartCardProps): JSX.Element {
   const { data, tableData, clearData } = props;
 
-  const [haveData, setHaveData] = useState<boolean>(false);
+  const [hasData, setHasData] = useState<boolean>(false);
 
   useEffect(() => {
     if (data.length > 0) {
-      setHaveData(true);
+      setHasData(true);
     }
   }, [data]);
 
-  if (!haveData) {
+  if (!hasData) {
     return <div>Loading...</div>;
   } else {
     const generations = [];
@@ -93,11 +93,11 @@ export default function ChartCard(props: ChartCardProps): JSX.Element {
       >
         <div className={styles.chartCard}>
           <Row gutter={16}>
-            <Col span={20} className={styles.contentCard}>
+            <Col span={10} className={styles.contentCard}>
               <Line
                 options={options}
                 data={dataSet}
-                height="200px"
+                height="400px"
                 width="200px"
               />
             </Col>
