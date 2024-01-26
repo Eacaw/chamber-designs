@@ -1,4 +1,5 @@
 import { DNA } from "./DNA";
+import { executeCrossoverByKey } from "./crossover";
 import { GASettings } from "./types";
 /**
  * Typewriting Monkeys project by David Pinchen (Eacaw) - 2024
@@ -8,6 +9,7 @@ let target: string[];
 let populationSize: number; // 50 - 1M
 let mutationRate: number; // 0 - 100
 let elitismValue: number; // 0 - 100
+let crossoverMethod: string;
 
 function createInitialPopulation() {
   const population = [];
@@ -23,7 +25,7 @@ function evolvePopulation(population: DNA[]) {
   for (let i = 0; i < population.length; i++) {
     const parentA = selectParent(population);
     const parentB = selectParent(population);
-    const child = parentA.crossover(parentB);
+    const child = executeCrossoverByKey(crossoverMethod, parentA, parentB);
     child.mutate();
     child.calculateFitness();
     newPopulation.push(child);
@@ -64,6 +66,8 @@ export function runSimulation(
   populationSize = settings.populationSize;
   mutationRate = settings.mutationRate / 100;
   elitismValue = Math.floor(populationSize / settings.elitismValue);
+  crossoverMethod = settings.crossoverMethod;
+  console.log("Running sim with: ", settings);
 
   let generation = 1;
   let population = createInitialPopulation();
@@ -109,7 +113,7 @@ function runSim(
       );
     }, 0);
   } else {
-    simulationFinished();
+    simulationFinished(generation);
 
     return;
   }
